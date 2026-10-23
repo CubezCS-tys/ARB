@@ -1,17 +1,26 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import { Playfair_Display, Inter, Noto_Naskh_Arabic } from "next/font/google";
 import localFont from "next/font/local";
+import SmoothScroll from "@/components/providers/SmoothScroll";
 import "./globals.css";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
+  style: ["normal", "italic"],
   variable: "--font-playfair",
   display: "swap",
 });
 
-const dmSans = DM_Sans({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-dm-sans",
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const arabic = Noto_Naskh_Arabic({
+  subsets: ["arabic"],
+  weight: ["400", "600"],
+  variable: "--font-arabic",
   display: "swap",
 });
 
@@ -22,17 +31,17 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "ARB | Academic Research Benchmarking",
+  title: "Soltani Intelligence | Intelligence. Applied.",
   description:
-    "Transforming academic archives into intelligent, searchable knowledge. OCR, citation indexing, searchable PDFs, and RAG systems for universities and publishers.",
+    "Soltani Intelligence builds AI systems that turn documents into knowledge: RAG at scale on Arabic and multilingual archives, OCR, metadata extraction, document parsing, deep research and citation indexing.",
   keywords: [
-    "academic research",
-    "OCR",
-    "citation indexing",
-    "searchable PDF",
-    "RAG",
-    "university technology",
-    "digital archives",
+    "Arabic RAG",
+    "Arabic OCR",
+    "metadata extraction",
+    "document parsing",
+    "citation index",
+    "deep research",
+    "AI consulting",
   ],
 };
 
@@ -42,11 +51,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${playfair.variable} ${dmSans.variable} ${geistMono.variable} font-sans antialiased noise-overlay`}
+        suppressHydrationWarning
+        className={`${playfair.variable} ${inter.variable} ${arabic.variable} ${geistMono.variable} grain bg-ink font-sans antialiased`}
       >
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

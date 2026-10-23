@@ -1,70 +1,37 @@
 import type { Config } from "tailwindcss";
 
+// Soltani Intelligence brand tokens — see src/content/brand.md
 const config: Config = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
-        midnight: "#0B1120",
-        navy: "#111B33",
-        slate: "#1A2744",
-        cream: "#F5F0E8",
-        parchment: "#EDE7D9",
-        amber: "#C8913A",
-        "amber-light": "#E0AE5C",
-        "amber-dim": "#8A6424",
-        "steel": "#8899B3",
-        "steel-light": "#A8B5C9",
+        ink: "#060B18", // deepest background (space)
+        midnight: "#101B2D", // brand Midnight Navy
+        navy: "#16233A",
+        slate: "#22324F",
+        gold: {
+          DEFAULT: "#CBAF7E", // brand Champagne Gold
+          light: "#E3CFA6",
+          dim: "#8C7650",
+        },
+        teal: {
+          DEFAULT: "#4C9DAB", // brand Digital Teal
+          light: "#7CC4CF",
+          dim: "#2D6570",
+        },
+        mint: "#7FE3C9", // SI Labs accent
+        paper: "#F7F8FA", // brand Soft White
+        mist: "#9AA7BD", // muted body text on dark
       },
       fontFamily: {
         serif: ["var(--font-playfair)", "Georgia", "serif"],
-        sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "monospace"],
+        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
+        arabic: ["var(--font-arabic)", "serif"],
       },
-      animation: {
-        "fade-up": "fadeUp 0.8s ease-out forwards",
-        "fade-in": "fadeIn 1s ease-out forwards",
-        "slide-in-left": "slideInLeft 0.8s ease-out forwards",
-        "slide-in-right": "slideInRight 0.8s ease-out forwards",
-        "scan-line": "scanLine 3s ease-in-out infinite",
-        "pulse-glow": "pulseGlow 4s ease-in-out infinite",
-        "float": "float 6s ease-in-out infinite",
-      },
-      keyframes: {
-        fadeUp: {
-          "0%": { opacity: "0", transform: "translateY(30px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        slideInLeft: {
-          "0%": { opacity: "0", transform: "translateX(-40px)" },
-          "100%": { opacity: "1", transform: "translateX(0)" },
-        },
-        slideInRight: {
-          "0%": { opacity: "0", transform: "translateX(40px)" },
-          "100%": { opacity: "1", transform: "translateX(0)" },
-        },
-        scanLine: {
-          "0%, 100%": { transform: "translateY(-100%)", opacity: "0" },
-          "10%": { opacity: "1" },
-          "90%": { opacity: "1" },
-          "50%": { transform: "translateY(100%)" },
-        },
-        pulseGlow: {
-          "0%, 100%": { opacity: "0.4" },
-          "50%": { opacity: "0.8" },
-        },
-        float: {
-          "0%, 100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
+      letterSpacing: {
+        brand: "0.32em",
       },
     },
   },
