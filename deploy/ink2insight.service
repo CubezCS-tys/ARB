@@ -1,0 +1,15 @@
+[Unit]
+Description=ink2insight.com Next.js site
+After=network.target
+
+[Service]
+Type=simple
+User=appuser
+WorkingDirectory=/home/appuser/ARB
+Environment=NODE_ENV=production
+ExecStart=/home/appuser/.nvm/versions/node/v20.19.6/bin/node /home/appuser/ARB/node_modules/next/dist/bin/next start -p 3020 -H 127.0.0.1
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
