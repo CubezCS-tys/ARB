@@ -82,7 +82,7 @@ export default function HeroOverlay({ show, reduced }: Props) {
             </span>
             <span className="block">
               <Letters text="to" start={8} />{" "}
-              <motion.span variants={insight} className="text-gold-gradient inline-block pb-[0.1em] pr-[0.12em] italic">
+              <motion.span variants={insight} className="text-gold-gradient -mb-[0.16em] inline-block pb-[0.26em] pr-[0.12em] italic">
                 insight.
               </motion.span>
             </span>

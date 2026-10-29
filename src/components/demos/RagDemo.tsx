@@ -18,6 +18,7 @@ import {
 } from "./rag/corpus";
 import SourceCard from "./rag/SourceCard";
 import { Segmented, SimBadge, focusRing } from "./rag/ui";
+import { brand } from "@/content/site";
 
 type Lang = "en" | "ar";
 type Phase = "normalise" | "retrieve" | "rerank" | "generate" | "done";
@@ -164,7 +165,7 @@ export default function RagDemo() {
               <span className="relative inline-flex h-2 w-2 rounded-full bg-teal" />
             </span>
             <div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-mist">SI Labs · Arabic RAG console</p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-mist">{brand.short} Labs · Arabic RAG console</p>
               <h3 className="font-serif text-lg leading-tight text-paper">Ask the archive</h3>
             </div>
           </div>

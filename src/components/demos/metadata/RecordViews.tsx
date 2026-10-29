@@ -269,7 +269,7 @@ export function buildRecord(sample: Sample, isFilled: (k: FieldKey) => boolean) 
   }
   o._extraction = {
     source: sample.file,
-    engine: "si-parse (simulated demo)",
+    engine: "i2i-parse (simulated demo)",
     confidence: conf,
   };
   return o;

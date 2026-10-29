@@ -4,31 +4,31 @@
  */
 
 export const brand = {
-  name: "Soltani Intelligence",
-  short: "SI",
+  name: "Ink2Insight",
+  short: "I2I",
   tagline: "Intelligence. Applied.",
   positioning: "Turning knowledge into intelligent impact.",
   parent: "Academic Research Benchmarking",
   parentShort: "ARB",
-  email: "hello@soltani-intelligence.com", // PLACEHOLDER
+  email: "yassine@ink2insight.com",
 };
 
 export const divisions = [
   {
     id: "advisory",
-    name: "SI Advisory",
+    name: "Advisory",
     line: "AI strategy & consulting",
     body: "Board-level AI strategy, readiness audits and roadmaps grounded in what your documents and data can actually support.",
   },
   {
     id: "labs",
-    name: "SI Labs",
+    name: "Labs",
     line: "AI platforms & development",
     body: "Production platforms: retrieval pipelines, OCR engines, parsing and extraction services, deployed on your infrastructure.",
   },
   {
     id: "research",
-    name: "SI Research",
+    name: "Research",
     line: "Research & knowledge intelligence",
     body: "Deep research, citation indexes and benchmarking that map what a field knows, who knows it, and where the gaps are.",
   },

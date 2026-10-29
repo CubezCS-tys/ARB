@@ -1,4 +1,6 @@
-/** Target layouts the glyph field morphs into: the SI monogram and ordered lines of "text". */
+/** Target layouts the glyph field morphs into: the i2i monogram and ordered lines of "text". */
+
+import { MONO_CX, drawMonogram } from "@/components/brand/monogram";
 
 export type Rand = () => number;
 
@@ -14,8 +16,8 @@ export function mulberry32(seed: number): Rand {
 }
 
 /**
- * Samples points inside the SI monogram (same geometry as brand/Logo.tsx:
- * serif S, i stem, teal triangle). Returns coordinates normalised so the mark
+ * Samples points inside the i2i monogram (shared geometry in brand/monogram.ts:
+ * serif 2, two i stems, teal triangles). Returns coordinates normalised so the mark
  * is ~1 unit tall and centred on the origin, plus a teal flag per point.
  */
 export function sampleMonogram(count: number, rand: Rand, serifFamily: string) {
@@ -29,18 +31,7 @@ export function sampleMonogram(count: number, rand: Rand, serifFamily: string) {
   const teal = new Uint8Array(count);
   if (!ctx) return { pts, teal };
 
-  ctx.fillStyle = "#f00";
-  ctx.font = `600 ${60 * k}px ${serifFamily}`;
-  ctx.textBaseline = "alphabetic";
-  ctx.fillText("S", 4 * k, 54 * k);
-  ctx.fillRect(45 * k, 24 * k, 7.5 * k, 30 * k);
-  ctx.fillStyle = "#0f0";
-  ctx.beginPath();
-  ctx.moveTo(44 * k, 20 * k);
-  ctx.lineTo(58 * k, 6 * k);
-  ctx.lineTo(56 * k, 20 * k);
-  ctx.closePath();
-  ctx.fill();
+  drawMonogram(ctx, k, "#f00", "#0f0", serifFamily);
 
   const data = ctx.getImageData(0, 0, size, size).data;
   const gold: number[] = [];
@@ -60,7 +51,7 @@ export function sampleMonogram(count: number, rand: Rand, serifFamily: string) {
     const j = Math.floor(rand() * (pool.length / 2)) * 2;
     const jx = (rand() - 0.5) * 2;
     const jy = (rand() - 0.5) * 2;
-    pts[i * 2] = ((pool[j] + jx) / k - 31) / 48;
+    pts[i * 2] = ((pool[j] + jx) / k - MONO_CX) / 48;
     pts[i * 2 + 1] = -((pool[j + 1] + jy) / k - 30) / 48;
     teal[i] = useTeal ? 1 : 0;
   }

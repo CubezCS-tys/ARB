@@ -1,8 +1,8 @@
-# Soltani Intelligence: site brief for every engineer
+# Ink2Insight: site brief for every engineer
 
 ## The company
-Soltani Intelligence (SI) is a father-and-son AI firm, a subsidiary of Academic Research
-Benchmarking (ARB). Divisions: SI Advisory (strategy), SI Labs (platforms), SI Research
+Ink2Insight (I2I) is a father-and-son AI firm, a subsidiary of Academic Research
+Benchmarking (ARB). Divisions: Advisory (strategy), Labs (platforms), Research
 (knowledge intelligence). They build: RAG at scale on Arabic documents, OCR, metadata
 extraction, document parsing, deep research, citation indexes.
 Tagline: "Intelligence. Applied." Positioning: "Turning knowledge into intelligent impact."

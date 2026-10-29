@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { brand } from "@/content/site";
+import { MONO_DOTS, MONO_STEMS, MONO_TWO } from "@/components/brand/monogram";
 import { prefersReducedMotion } from "@/lib/scroll";
 
 /**
@@ -44,11 +45,10 @@ function setLenis(running: boolean) {
   }
 }
 
-// The S drawn as a single hairline (viewBox 0 0 64 64), echoing the Logo monogram.
-const S_PATH =
-  "M37.5 19.5 C35 14.5 29.5 12 23 12 C14.5 12 9 17 9 23.5 C9 30.5 15 32.5 23 34.5 C31 36.5 38 39 38 46 C38 52 32 55.5 24 55.5 C16 55.5 10.5 51.5 8.5 46";
-const STEM_PATH = "M45 24 H52.5 V54 H45 Z";
-const DOT_PATH = "M44 20 L58 6 L56 20 Z";
+// The 2 drawn as a single hairline (viewBox 0 0 64 64), echoing the i2i monogram.
+const TWO_PATH = "M22.5 31 C22.5 25.5 26.5 22.5 32 22.5 C37.5 22.5 41 26 41 30.5 C41 36.5 35 40.5 22 53.5 H42";
+const STEM_PATH = MONO_STEMS.map((s) => `M${s.x} ${s.y} H${s.x + s.w} V${s.y + s.h} H${s.x} Z`).join(" ");
+const DOT_PATH = MONO_DOTS.join(" ");
 
 export default function Loader() {
   const [visible, setVisible] = useState(true);
@@ -200,22 +200,25 @@ export default function Loader() {
           {/* filled monogram, revealed after the hairlines draw */}
           <g data-fill style={{ opacity: 0 }}>
             <text
-              x="4"
-              y="54"
+              x={MONO_TWO.x}
+              y={MONO_TWO.y}
+              textAnchor="middle"
               fontFamily="var(--font-playfair), Georgia, serif"
-              fontSize="60"
+              fontSize={MONO_TWO.size}
               fontWeight="600"
               fill="url(#si-loader-gold)"
             >
-              S
+              2
             </text>
-            <rect x="45" y="24" width="7.5" height="30" fill="url(#si-loader-gold)" />
+            {MONO_STEMS.map((s) => (
+              <rect key={s.x} x={s.x} y={s.y} width={s.w} height={s.h} fill="url(#si-loader-gold)" />
+            ))}
           </g>
 
           {/* hairlines */}
           <path
             data-draw="s"
-            d={S_PATH}
+            d={TWO_PATH}
             pathLength={1}
             fill="none"
             stroke="#E3CFA6"
@@ -233,7 +236,7 @@ export default function Loader() {
             style={{ strokeDasharray: 1, strokeDashoffset: 1 }}
           />
 
-          <circle data-flash cx="52.5" cy="14" r="12" fill="url(#si-loader-flash)" style={{ opacity: 0 }} />
+          <circle data-flash cx="57" cy="13" r="12" fill="url(#si-loader-flash)" style={{ opacity: 0 }} />
           <path data-dot d={DOT_PATH} fill="#4C9DAB" style={{ opacity: 0 }} />
         </svg>
 
@@ -242,7 +245,9 @@ export default function Loader() {
           className="mt-8 whitespace-nowrap font-sans text-[11px] font-medium uppercase md:text-xs"
           style={{ letterSpacing: "1.1em", marginRight: "-1.1em", opacity: 0 }}
         >
-          <span className="text-paper">Soltani</span> <span className="text-gold">Intelligence</span>
+          <span className="text-paper">Ink</span>
+          <span className="text-gold-light">2</span>
+          <span className="text-gold">Insight</span>
         </p>
         <p
           data-tag

@@ -6,6 +6,7 @@ import { easing } from "maath";
 import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { brand, divisions } from "@/content/site";
+import { drawMonogram } from "@/components/brand/monogram";
 
 export type DivisionId = (typeof divisions)[number]["id"];
 
@@ -47,7 +48,7 @@ function makeGlowTexture() {
   return tex;
 }
 
-/** The SI monogram (same construction as components/brand/Logo.tsx) drawn to a texture. */
+/** The i2i monogram (shared geometry in components/brand/monogram.ts) drawn to a texture. */
 function makeMonogramTexture() {
   const size = 256;
   const c = document.createElement("canvas");
@@ -62,23 +63,12 @@ function makeMonogramTexture() {
     grad.addColorStop(0, "#FFF3DA");
     grad.addColorStop(0.55, "#E3CFA6");
     grad.addColorStop(1, "#CBAF7E");
-    g.fillStyle = grad;
     const family = getComputedStyle(document.body).getPropertyValue("--font-playfair").trim() || "Georgia";
-    g.font = `600 ${60 * k}px ${family}, Georgia, serif`;
-    g.textBaseline = "alphabetic";
-    g.fillText("S", 4 * k, 54 * k);
-    g.fillRect(45 * k, 24 * k, 7.5 * k, 30 * k);
-    g.fillStyle = "#7CC4CF";
-    g.beginPath();
-    g.moveTo(44 * k, 20 * k);
-    g.lineTo(58 * k, 6 * k);
-    g.lineTo(56 * k, 20 * k);
-    g.closePath();
-    g.fill();
+    drawMonogram(g, k, grad, "#7CC4CF", `${family}, Georgia, serif`);
     tex.needsUpdate = true;
   };
   draw();
-  // redraw once webfonts are ready so the S is Playfair, not the fallback
+  // redraw once webfonts are ready so the 2 is Playfair, not the fallback
   document.fonts?.ready.then(draw).catch(() => undefined);
   return tex;
 }
@@ -188,7 +178,7 @@ function GravityWell({ compact }: { compact: boolean }) {
 }
 
 /* ---------------------------------------------------------------- */
-/* SI: luminous core with the monogram                                */
+/* Core: luminous core with the monogram                                */
 /* ---------------------------------------------------------------- */
 
 function Core({ glow }: { glow: THREE.Texture }) {

@@ -6,6 +6,7 @@ import { DocPage } from "./metadata/DocPages";
 import { CardView, DublinCoreView, JsonView, MarcView, buildRecord } from "./metadata/RecordViews";
 import SimBadge from "./metadata/SimBadge";
 import { FIELD_LABEL, FIELD_ORDER, PAGE_STEP, SAMPLES, fieldsFrom, stepsOf, type FieldKey } from "./metadata/samples";
+import { brand } from "@/content/site";
 
 type View = "card" | "json" | "dc" | "marc";
 type Rect = { x: number; y: number; w: number; h: number };
@@ -257,7 +258,7 @@ export default function MetadataDemo() {
         {/* ---------- header ---------- */}
         <div className="flex h-auto flex-wrap items-center justify-between gap-3 border-b border-white/10 px-4 py-3 sm:px-5 md:h-14 md:py-0">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-gold">SI Parse · record extraction</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-gold">{brand.short} Parse · record extraction</span>
             <SimBadge />
           </div>
           <button

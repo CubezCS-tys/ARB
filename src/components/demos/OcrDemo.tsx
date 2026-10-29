@@ -5,6 +5,7 @@ import { useReducedMotion } from "framer-motion";
 import { PAGES, PH, PW, confColor, confLabel, layoutPage, type Fonts, type Line, type Page } from "./ocr/pages";
 import { drawClean, drawScan } from "./ocr/render";
 import { Segmented, SimBadge, focusRing } from "./rag/ui";
+import { brand } from "@/content/site";
 
 type PageId = Page["id"];
 
@@ -184,7 +185,7 @@ export default function OcrDemo() {
     <div ref={rootRef} className="glass relative flex flex-col overflow-hidden rounded-2xl md:h-[600px]">
       <header className="flex flex-wrap items-center gap-x-4 gap-y-2 border-b border-white/[0.08] px-4 py-3 sm:px-5">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-mist">SI Labs · OCR engine</p>
+          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-mist">{brand.short} Labs · OCR engine</p>
           <h3 className="font-serif text-lg leading-tight text-paper">Read the page</h3>
         </div>
         <div className="ml-auto flex flex-wrap items-center gap-3">

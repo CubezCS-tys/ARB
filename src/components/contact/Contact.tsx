@@ -134,7 +134,7 @@ export default function Contact() {
               Your archive has answers.
             </motion.span>
             <motion.span
-              className="text-gold-gradient block pb-[0.08em] italic"
+              className="text-gold-gradient -mb-[0.16em] block pb-[0.24em] italic"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
@@ -268,7 +268,7 @@ export default function Contact() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -12 }}
                       transition={{ duration: 0.5, ease: EASE }}
-                      aria-label="Contact Soltani Intelligence"
+                      aria-label={`Contact ${brand.name}`}
                     >
                       <div className="grid gap-x-8 gap-y-7 sm:grid-cols-2">
                         <Field
