@@ -1,6 +1,6 @@
 /** Target layouts the glyph field morphs into: the i2i monogram and ordered lines of "text". */
 
-import { MONO_CX, drawMonogram } from "@/components/brand/monogram";
+import { MONO_CX, MONO_CY, drawMonogram } from "@/components/brand/monogram";
 
 export type Rand = () => number;
 
@@ -17,10 +17,10 @@ export function mulberry32(seed: number): Rand {
 
 /**
  * Samples points inside the i2i monogram (shared geometry in brand/monogram.ts:
- * serif 2, two i stems, teal triangles). Returns coordinates normalised so the mark
- * is ~1 unit tall and centred on the origin, plus a teal flag per point.
+ * Playfair i2i, teal dots). Returns coordinates normalised so the mark is ~0.85
+ * units tall and centred on the origin, plus a teal flag per point.
  */
-export function sampleMonogram(count: number, rand: Rand, serifFamily: string) {
+export function sampleMonogram(count: number, rand: Rand) {
   const k = 5;
   const size = 64 * k;
   const canvas = document.createElement("canvas");
@@ -31,7 +31,7 @@ export function sampleMonogram(count: number, rand: Rand, serifFamily: string) {
   const teal = new Uint8Array(count);
   if (!ctx) return { pts, teal };
 
-  drawMonogram(ctx, k, "#f00", "#0f0", serifFamily);
+  drawMonogram(ctx, k, "#f00", "#0f0");
 
   const data = ctx.getImageData(0, 0, size, size).data;
   const gold: number[] = [];
@@ -45,14 +45,14 @@ export function sampleMonogram(count: number, rand: Rand, serifFamily: string) {
   }
 
   for (let i = 0; i < count; i++) {
-    const useTeal = tri.length > 0 && rand() < 0.07;
+    const useTeal = tri.length > 0 && rand() < 0.12;
     const pool = useTeal || gold.length === 0 ? tri : gold;
     if (pool.length === 0) break;
     const j = Math.floor(rand() * (pool.length / 2)) * 2;
     const jx = (rand() - 0.5) * 2;
     const jy = (rand() - 0.5) * 2;
-    pts[i * 2] = ((pool[j] + jx) / k - MONO_CX) / 48;
-    pts[i * 2 + 1] = -((pool[j + 1] + jy) / k - 30) / 48;
+    pts[i * 2] = ((pool[j] + jx) / k - MONO_CX) / 44;
+    pts[i * 2 + 1] = -((pool[j + 1] + jy) / k - MONO_CY) / 44;
     teal[i] = useTeal ? 1 : 0;
   }
   return { pts, teal };

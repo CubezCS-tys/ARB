@@ -28,7 +28,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 pb-10 pt-20 md:px-10 md:pt-28">
         <div className="grid gap-14 md:grid-cols-12">
           <div className="md:col-span-4">
-            <Logo wordmark className="h-9" />
+            <Logo wordmark className="h-11" />
             <p className="mt-6 max-w-xs font-serif text-2xl leading-snug text-paper">
               {brand.positioning.replace(/\.$/, "")}
               <span className="text-gold">.</span>

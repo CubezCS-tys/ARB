@@ -115,7 +115,7 @@ export default function GlyphField({ mobile, reduced, introDone, onReady }: Prop
       if (cancelled) return;
       const { texture } = buildGlyphAtlas(arabic, serif);
       const count = mobile ? 2200 : 6500;
-      const field = buildField(count, mobile, window.innerWidth / window.innerHeight, serif);
+      const field = buildField(count, mobile, window.innerWidth / window.innerHeight);
       result = { ...field, atlas: texture };
       if (cancelled) {
         field.points.dispose();

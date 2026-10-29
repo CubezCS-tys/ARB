@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { brand } from "@/content/site";
-import { MONO_DOTS, MONO_STEMS, MONO_TWO } from "@/components/brand/monogram";
+import { MONO_DOTS, MONO_GOLD, MONO_STEMS, MONO_TWO } from "@/components/brand/monogram";
 import { prefersReducedMotion } from "@/lib/scroll";
 
 /**
@@ -45,10 +45,9 @@ function setLenis(running: boolean) {
   }
 }
 
-// The 2 drawn as a single hairline (viewBox 0 0 64 64), echoing the i2i monogram.
-const TWO_PATH = "M22.5 31 C22.5 25.5 26.5 22.5 32 22.5 C37.5 22.5 41 26 41 30.5 C41 36.5 35 40.5 22 53.5 H42";
-const STEM_PATH = MONO_STEMS.map((s) => `M${s.x} ${s.y} H${s.x + s.w} V${s.y + s.h} H${s.x} Z`).join(" ");
-const DOT_PATH = MONO_DOTS.join(" ");
+// Glyph outlines traced as hairlines before the fill fades in (viewBox 0 0 64 64).
+const STEM_PATH = MONO_STEMS.join(" ");
+const RIGHT_DOT = MONO_DOTS[1];
 
 export default function Loader() {
   const [visible, setVisible] = useState(true);
@@ -116,7 +115,7 @@ export default function Loader() {
           )
           .fromTo(
             q("[data-flash]"),
-            { scale: 0.2, opacity: 0, svgOrigin: "52.5 14" },
+            { scale: 0.2, opacity: 0, svgOrigin: `${RIGHT_DOT.cx} ${RIGHT_DOT.cy}` },
             { scale: 1.4, opacity: 0.85, duration: 0.16, ease: "power2.out" },
             1.34,
           )
@@ -199,26 +198,13 @@ export default function Loader() {
 
           {/* filled monogram, revealed after the hairlines draw */}
           <g data-fill style={{ opacity: 0 }}>
-            <text
-              x={MONO_TWO.x}
-              y={MONO_TWO.y}
-              textAnchor="middle"
-              fontFamily="var(--font-playfair), Georgia, serif"
-              fontSize={MONO_TWO.size}
-              fontWeight="600"
-              fill="url(#si-loader-gold)"
-            >
-              2
-            </text>
-            {MONO_STEMS.map((s) => (
-              <rect key={s.x} x={s.x} y={s.y} width={s.w} height={s.h} fill="url(#si-loader-gold)" />
-            ))}
+            <path d={MONO_GOLD} fill="url(#si-loader-gold)" />
           </g>
 
           {/* hairlines */}
           <path
             data-draw="s"
-            d={TWO_PATH}
+            d={MONO_TWO}
             pathLength={1}
             fill="none"
             stroke="#E3CFA6"
@@ -236,8 +222,12 @@ export default function Loader() {
             style={{ strokeDasharray: 1, strokeDashoffset: 1 }}
           />
 
-          <circle data-flash cx="57" cy="13" r="12" fill="url(#si-loader-flash)" style={{ opacity: 0 }} />
-          <path data-dot d={DOT_PATH} fill="#4C9DAB" style={{ opacity: 0 }} />
+          <circle data-flash cx={RIGHT_DOT.cx} cy={RIGHT_DOT.cy} r="12" fill="url(#si-loader-flash)" style={{ opacity: 0 }} />
+          <g data-dot style={{ opacity: 0 }}>
+            {MONO_DOTS.map((d) => (
+              <circle key={d.cx} cx={d.cx} cy={d.cy} r={d.r} fill="#4C9DAB" />
+            ))}
+          </g>
         </svg>
 
         <p

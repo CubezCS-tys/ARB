@@ -63,13 +63,10 @@ function makeMonogramTexture() {
     grad.addColorStop(0, "#FFF3DA");
     grad.addColorStop(0.55, "#E3CFA6");
     grad.addColorStop(1, "#CBAF7E");
-    const family = getComputedStyle(document.body).getPropertyValue("--font-playfair").trim() || "Georgia";
-    drawMonogram(g, k, grad, "#7CC4CF", `${family}, Georgia, serif`);
+    drawMonogram(g, k, grad, "#7CC4CF");
     tex.needsUpdate = true;
   };
   draw();
-  // redraw once webfonts are ready so the 2 is Playfair, not the fallback
-  document.fonts?.ready.then(draw).catch(() => undefined);
   return tex;
 }
 

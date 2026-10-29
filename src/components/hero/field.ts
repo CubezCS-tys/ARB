@@ -32,12 +32,12 @@ export function layoutFor(aspect: number, slotW: number) {
   };
 }
 
-export function buildField(count: number, mobile: boolean, aspect: number, serif: string): Omit<Built, "atlas"> {
+export function buildField(count: number, mobile: boolean, aspect: number): Omit<Built, "atlas"> {
   const rand = mulberry32(20240611);
   const ext = layoutFor(aspect, 1);
   const page = buildLineLayout(mobile, rand, ext.lineExtent.x / ext.lineExtent.y);
   const slots = Math.min(page.count, Math.floor(count * 0.6));
-  const mono = sampleMonogram(count, rand, serif);
+  const mono = sampleMonogram(count, rand);
   const AR = ARABIC_GLYPHS.length;
   const LA = LATIN_GLYPHS.length;
 

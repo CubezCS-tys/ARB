@@ -1,4 +1,4 @@
-import { MONO_DOTS, MONO_STEMS, MONO_TWO } from "./monogram";
+import { MONO_DOTS, MONO_GOLD } from "./monogram";
 
 type Props = {
   className?: string;
@@ -9,8 +9,8 @@ type Props = {
 };
 
 /**
- * i2i monogram: two serif i stems with the teal triangle "dots" from the brand
- * board, around a serif 2. Geometry lives in ./monogram.ts.
+ * i2i monogram: two lowercase serif i's with teal dots around a serif 2.
+ * Geometry lives in ./monogram.ts.
  */
 export default function Logo({ className = "", tone = "gold", wordmark = false }: Props) {
   const fill = tone === "gold" ? "url(#i2i-gold)" : tone === "navy" ? "#101B2D" : "currentColor";
@@ -25,22 +25,9 @@ export default function Logo({ className = "", tone = "gold", wordmark = false }
             <stop offset="100%" stopColor="#8C7650" />
           </linearGradient>
         </defs>
-        <text
-          x={MONO_TWO.x}
-          y={MONO_TWO.y}
-          textAnchor="middle"
-          fontFamily="var(--font-playfair), Georgia, serif"
-          fontSize={MONO_TWO.size}
-          fontWeight="600"
-          fill={fill}
-        >
-          2
-        </text>
-        {MONO_STEMS.map((s) => (
-          <rect key={s.x} x={s.x} y={s.y} width={s.w} height={s.h} fill={fill} />
-        ))}
+        <path d={MONO_GOLD} fill={fill} />
         {MONO_DOTS.map((d) => (
-          <path key={d} d={d} fill={dot} />
+          <circle key={d.cx} cx={d.cx} cy={d.cy} r={d.r} fill={dot} />
         ))}
       </svg>
       {wordmark && (

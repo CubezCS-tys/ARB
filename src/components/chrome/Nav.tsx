@@ -169,7 +169,7 @@ export default function Nav() {
             aria-label={`${brand.name}, back to top`}
             className="-m-2 rounded-sm p-2 focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-2 focus-visible:outline-gold"
           >
-            <Logo wordmark className="h-9" />
+            <Logo wordmark className="h-11" />
           </a>
 
           <div className="hidden items-center gap-10 md:flex">

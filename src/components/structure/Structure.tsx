@@ -129,7 +129,7 @@ export default function Structure() {
                     <li>
                       <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-mist/60">Subsidiary</span>
                       <p className="mt-1 flex items-center gap-3 text-paper">
-                        <Logo className="h-5" />
+                        <Logo className="h-6" />
                         {brand.name}
                       </p>
                       <ol className="ml-[5px] mt-4 space-y-1 border-l border-gold/25 pl-4">
